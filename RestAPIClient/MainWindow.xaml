@@ -1,0 +1,65 @@
+﻿<Window x:Class="RestAPIClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestAPIClient"
+        mc:Ignorable="d"
+        Title="Rest Client" Height="350"  Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Column="0" Grid.Row="0" Name="cmb" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" VerticalContentAlignment="Center"  Name="address" Text="{Binding Path = Address, Mode=TwoWay}"/>
+        <Button Grid.Column="4" Grid.Row="0" Content="Send" Click="Button_ClickAsync"/>
+        <!--<Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Background="CadetBlue" Foreground="White" Content="Key: " />
+        <TextBox Grid.Column="1" Grid.Row="2" Name="key" Text="{Binding Key, Mode=TwoWay}"/>-->
+        <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Background="CadetBlue" Foreground="White" Content="Content: " />
+        <TextBox Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" VerticalContentAlignment="Center" Name="value" Text="{Binding Path=ContentToSend, Mode=TwoWay}"/>
+        <ListBox Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="1" BorderThickness="2" Name="output" ItemsSource="{Binding Path=Output}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Content="First Name: "/>
+                        <Label Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Content="{Binding FirstName}"/>
+
+                        <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Content="Last Name: "/>
+                        <Label Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Content="{Binding LastName}"/>
+
+                        <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Content="Email: "/>
+                        <Label Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Content="{Binding Email}"/>
+
+                        <Label Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Content="Years: "/>
+                        <Label Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Content="{Binding YearsInSchool}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
