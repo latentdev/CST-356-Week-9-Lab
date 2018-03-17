@@ -26,7 +26,18 @@ namespace RestAPIClient.Network
             if (response.IsSuccessStatusCode)
             {
                 String json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<ObservableCollection<User>>(json);
+                try
+                {
+                    var result = JsonConvert.DeserializeObject<User>(json);
+                    var collection = new ObservableCollection<User>();
+                    collection.Add(result);
+                    return collection;
+                }catch(Exception e) { }
+                try
+                {
+                    return JsonConvert.DeserializeObject<ObservableCollection<User>>(json);
+                }catch(Exception e) { }
+                return new ObservableCollection<User>();
             }
             else
             {
